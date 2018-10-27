@@ -1,0 +1,22 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <div class="lead">
+        <h1>Log_in</h1>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    {% if form.errors %}
+    <p>用户名和密码不匹配，请重试！</p>
+    {% endif %}
+    <form method="post" action="{% url 'users:login' %}">
+        {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button class="btn btn-info" name="submit">登录</button>
+    <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
+    {% endbuttons %}
+    </form>
+{% endblock content %}

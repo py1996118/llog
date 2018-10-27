@@ -1,0 +1,23 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+
+
+{% block header %}
+    <div class="lead">
+        <h1>New_Entry</h1>
+    </div>
+{% endblock header %}
+
+{% block content %}
+<p class="lead">当前主题:<a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+
+<h4>
+<form action ="{% url 'learning_logs:new_entry' topic.id %}" method='post'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button class="btn btn-info" name ="submit">提交</button>
+    {% endbuttons %}
+</form>
+</h4>
+{% endblock content %}

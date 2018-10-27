@@ -1,0 +1,35 @@
+{% extends "learning_logs/base.html" %}
+
+{% block header %}
+    <div class="lead">
+        <h1>Topic :{{ topic }}</h1>
+        <h2>Entries:</h2>
+    </div>
+<tr>
+    <a href="{% url 'learning_logs:new_entry' topic.id %}" class="btn btn-info btn-lg info" role="button">添加新条目</a>
+</tr>
+{% endblock header %}
+
+{% block content %}
+    {% for entry in entries %}
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          {{ entry.date_added|date:'M d, Y H:i:s' }}
+          <a href="{% url 'learning_logs:edit_entry' entry.id %}" class="bg-info">编辑条目</a>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <h3><p>{{ entry.text|linebreaks }}</p></h3>
+
+    {% empty %}
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">没有创建条目</h3>
+          </div>
+          <div class="panel-body">
+          </div>
+        </div>
+    {% endfor %}
+
+{% endblock content %}

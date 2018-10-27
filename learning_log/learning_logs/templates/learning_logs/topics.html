@@ -1,0 +1,25 @@
+{% extends "learning_logs/base.html" %}
+
+{% block header %}
+    <div class="lead">
+        <h1>Topics</h1>
+    </div>
+{% endblock header %}
+
+{% block content %}
+<table class="table">
+<ul>
+    {% for topic in topics %}
+    <li class="lead"><a href="{%url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+    {% empty %}
+    <li class="lead"> 没有创建主题 </li>
+    {% endfor%}
+    </li>
+<tr>
+<a href="{% url 'learning_logs:new_topic' %}" class="btn btn-info btn-lg active" role="button">New_Topic</a>
+</tr>
+</ul>
+</table>
+{% endblock content %}
+
+

@@ -1,0 +1,23 @@
+{% extends "learning_logs/base.html" %}
+
+{% block header %}
+    <div class="jumbotron">
+        <h1>Track your learning!</h1>
+        <h3>
+        <p> 学习笔记 </p>
+        <p> 用文字记录生活 </p>
+        <p> 用心感受文字的魅力 </p>
+        </h3>
+    </div>
+{% endblock header %}
+
+{% block content %}
+     {% if user.is_authenticated %}
+    <p class="lead">注册可以跟踪您的学习，可以创建任意的主题</p>
+    <p class="lead">添加一些关于学习的主题,主题可以添加不限制的条目进行跟踪学习</p>
+    {% else %}
+    <p class="lead"><a href="{% url 'users:register' %}">注册</a>可以跟踪您的学习，可以创建任意的主题</p>
+    <p class="lead">添加一些关于学习的主题,主题可以添加不限制的条目进行跟踪学习</p>
+    {% endif%}
+
+{% endblock content %}
